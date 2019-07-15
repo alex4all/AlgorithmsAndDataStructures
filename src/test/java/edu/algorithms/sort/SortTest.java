@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertArrayEquals;
 
 public class SortTest {
 
@@ -36,33 +36,39 @@ public class SortTest {
     @Test
     public void insertionSortTest() {
         InsertionSort insertionSort = new InsertionSort();
+        long start = System.currentTimeMillis();
         for (int i = 0; i < INPUT.length; i++) {
             int[] array = INPUT[i];
             System.out.println(Arrays.toString(array));
             insertionSort.sort(array);
-            assertTrue(Arrays.equals(array, EXPECTED_OUTPUT[i]));
+            assertArrayEquals(array, EXPECTED_OUTPUT[i]);
         }
+        System.out.println("Time taken: " + (System.currentTimeMillis() - start));
     }
 
     @Test
     public void mergeSortTest() {
         MergeSort insertionSort = new MergeSort();
+        long start = System.currentTimeMillis();
         for (int i = 0; i < INPUT.length; i++) {
             int[] array = INPUT[i];
-            System.out.println(Arrays.toString(array));
+            //System.out.println(Arrays.toString(array));
             insertionSort.sort(array);
-            assertTrue(Arrays.equals(array, EXPECTED_OUTPUT[i]));
+            assertArrayEquals(array, EXPECTED_OUTPUT[i]);
         }
+        System.out.println("Time taken: " + (System.currentTimeMillis() - start));
     }
 
     @Test
     public void mergeSort2Test() {
         MergeSort2 insertionSort = new MergeSort2();
+        long start = System.currentTimeMillis();
         for (int i = 0; i < INPUT.length; i++) {
             int[] array = INPUT[i];
-            System.out.println(Arrays.toString(array));
+            //System.out.println(Arrays.toString(array));
             insertionSort.sort(array);
-            assertTrue(Arrays.equals(array, EXPECTED_OUTPUT[i]));
+            assertArrayEquals(array, EXPECTED_OUTPUT[i]);
         }
+        System.out.println("Time taken: " + (System.currentTimeMillis() - start));
     }
 }

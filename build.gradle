@@ -21,6 +21,8 @@ repositories {
 }
 
 dependencies {
+
+    implementation 'org.spf4j:spf4j-core:8.6.14'
     // This dependency is found on compile classpath of this component and consumers.
     implementation 'com.google.guava:guava:27.0.1-jre'
 
@@ -29,4 +31,4 @@ dependencies {
 }
 
 // Define the main class for the application
-mainClassName = 'edu.ads.App'
+mainClassName = 'edu.App'
