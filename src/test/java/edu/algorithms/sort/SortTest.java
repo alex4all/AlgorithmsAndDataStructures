@@ -1,8 +1,6 @@
 package edu.algorithms.sort;
 
-import edu.algorithm.sort.InsertionSort;
-import edu.algorithm.sort.MergeSort;
-import edu.algorithm.sort.MergeSort2;
+import edu.algorithm.sort.*;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -47,6 +45,19 @@ public class SortTest {
     }
 
     @Test
+    public void heapSort() {
+        Sort sort = new HeapSort();
+        long start = System.currentTimeMillis();
+        for (int i = 0; i < INPUT.length; i++) {
+            int[] array = INPUT[i];
+            System.out.println(Arrays.toString(array));
+            sort.sort(array);
+            assertArrayEquals(array, EXPECTED_OUTPUT[i]);
+        }
+        System.out.println("Time taken: " + (System.currentTimeMillis() - start));
+    }
+
+    @Test
     public void mergeSortTest() {
         MergeSort insertionSort = new MergeSort();
         long start = System.currentTimeMillis();
@@ -67,6 +78,45 @@ public class SortTest {
             int[] array = INPUT[i];
             //System.out.println(Arrays.toString(array));
             insertionSort.sort(array);
+            assertArrayEquals(array, EXPECTED_OUTPUT[i]);
+        }
+        System.out.println("Time taken: " + (System.currentTimeMillis() - start));
+    }
+
+    @Test
+    public void quickSortClassicTest() {
+        QuickSort sort = new QuickSort();
+        long start = System.currentTimeMillis();
+        for (int i = 0; i < INPUT.length; i++) {
+            int[] array = INPUT[i];
+            //System.out.println(Arrays.toString(array));
+            sort.sort(array);
+            assertArrayEquals(array, EXPECTED_OUTPUT[i]);
+        }
+        System.out.println("Time taken: " + (System.currentTimeMillis() - start));
+    }
+
+    @Test
+    public void quickSortRandomTest() {
+        QuickSort sort = new QuickSort(new QuickSort.RandomPartitioner());
+        long start = System.currentTimeMillis();
+        for (int i = 0; i < INPUT.length; i++) {
+            int[] array = INPUT[i];
+            //System.out.println(Arrays.toString(array));
+            sort.sort(array);
+            assertArrayEquals(array, EXPECTED_OUTPUT[i]);
+        }
+        System.out.println("Time taken: " + (System.currentTimeMillis() - start));
+    }
+
+    @Test
+    public void quickSortHoareTest() {
+        QuickSort sort = new QuickSort(new QuickSort.HoarePartitioner());
+        long start = System.currentTimeMillis();
+        for (int i = 0; i < INPUT.length; i++) {
+            int[] array = INPUT[i];
+            System.out.println(Arrays.toString(array));
+            sort.hoareSort(array);
             assertArrayEquals(array, EXPECTED_OUTPUT[i]);
         }
         System.out.println("Time taken: " + (System.currentTimeMillis() - start));

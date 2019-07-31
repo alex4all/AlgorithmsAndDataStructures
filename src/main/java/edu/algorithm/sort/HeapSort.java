@@ -10,12 +10,11 @@ public class HeapSort implements Sort {
         }
 
         // at this point heap created
-        // put top element to the end of array
+        // put top element (max or min) to the end of heap
+        // and heapify [0, n - 1]
         for (int i = array.length - 1; i >= 0; i--) {
             // swap elements
-            int tmp = array[i];
-            array[i] = array[0];
-            array[0] = tmp;
+            swap(array, 0, i);
             maxHeapify(array, 0, i);
         }
     }
@@ -27,16 +26,14 @@ public class HeapSort implements Sort {
         int leftChild = 2 * parentNode + 1;
         int rightChild = 2 * parentNode + 2;
 
-        if (leftChild < heapSize && array[leftChild] > array[parentNode])
+        if (leftChild < heapSize && array[leftChild] > array[maxValueNode])
             maxValueNode = leftChild;
-        if (rightChild < heapSize && array[rightChild] > array[parentNode])
+        if (rightChild < heapSize && array[rightChild] > array[maxValueNode])
             maxValueNode = rightChild;
 
         if (maxValueNode != parentNode) {
             // swap elements
-            int tmp = array[maxValueNode];
-            array[maxValueNode] = array[parentNode];
-            array[parentNode] = tmp;
+            swap(array, maxValueNode, parentNode);
             // continue heapify
             maxHeapify(array, maxValueNode, heapSize);
         }
@@ -45,23 +42,27 @@ public class HeapSort implements Sort {
     // Restore basic min-heap property:
     // Parent node value >= child nodes value
     private void minHeapify(int[] array, int parentNode, int heapSize) {
-        int maxValueNode = parentNode;
+        int minValueNode = parentNode;
         int leftChild = 2 * parentNode + 1;
         int rightChild = 2 * parentNode + 2;
 
-        if (leftChild < heapSize && array[leftChild] < array[parentNode])
-            maxValueNode = leftChild;
-        if (rightChild < heapSize && array[rightChild] < array[parentNode])
-            maxValueNode = rightChild;
+        if (leftChild < heapSize && array[leftChild] < array[minValueNode])
+            minValueNode = leftChild;
+        if (rightChild < heapSize && array[rightChild] < array[minValueNode])
+            minValueNode = rightChild;
 
-        if (maxValueNode != parentNode) {
+        if (minValueNode != parentNode) {
             // swap elements
-            int tmp = array[maxValueNode];
-            array[maxValueNode] = array[parentNode];
-            array[parentNode] = tmp;
+            swap(array, minValueNode, parentNode);
             // continue heapify
-            maxHeapify(array, maxValueNode, heapSize);
+            maxHeapify(array, minValueNode, heapSize);
         }
+    }
+
+    private void swap(int[] array, int first, int second) {
+        int tmp = array[first];
+        array[first] = array[second];
+        array[second] = tmp;
     }
 
 }

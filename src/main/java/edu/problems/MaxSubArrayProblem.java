@@ -1,5 +1,10 @@
 package edu.problems;
 
+
+/**
+ * NOT BEST SOLUTION FOR THIS PROBLEM
+ * Just an example of Divide and Conquer technique
+ */
 public class MaxSubArrayProblem {
 
     public Segment process(int[] array) {
